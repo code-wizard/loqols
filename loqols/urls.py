@@ -26,5 +26,6 @@ urlpatterns = [
     url(r'^get-auth-token/', views.obtain_auth_token,name="get_auth_token"),
     url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
     url(r'^rest-auth/facebook/$', FacebookLogin.as_view(), name='fb_login'),
-    url(r'^rest-auth/', include('rest_auth.urls'))
+    url(r'^rest-auth/', include('rest_auth.urls')),
+    url(r'^rest-auth/authentication/',include("authentication.urls"),name="authentication"),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

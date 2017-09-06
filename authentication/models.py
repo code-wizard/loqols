@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import  AbstractBaseUser,PermissionsMixin,BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser,PermissionsMixin,BaseUserManager
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 # Create your models here.
@@ -86,7 +86,7 @@ def photo_upload_path(instance,filename):
 class LqProfile(models.Model):
     user = models.OneToOneField(LqUser, on_delete=models.CASCADE, related_name="profile")
     first_name = models.CharField(max_length=255)
-    last_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255,null=True)
     phone = models.CharField(max_length=16, null=True,blank=True)
     dob = models.DateField(blank=True, null=True)
     country = models.CharField(max_length=2, null=True, blank=True)

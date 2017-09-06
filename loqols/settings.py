@@ -27,6 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 AUTH_USER_MODEL = "authentication.LqUser"
+# AUTHENTICATION_BACKENDS = (
+#     # 'authentication.backends.EmailAuthBackend',
+# )
 
 # Application definition
 
@@ -154,6 +157,13 @@ REST_AUTH_REGISTER_SERIALIZERS = {
     'REGISTER_SERIALIZER':"authentication.serializers.LqUserRegistrationSerializer"
 
 }
+REST_AUTH_SERIALIZERS = {
+    'LOGIN_SERIALIZER': 'authentication.serializers.LqLoginSerializer',
+    # 'TOKEN_SERIALIZER': 'path.to.custom.TokenSerializer',
+}
+ACCOUNT_ADAPTER="authentication.adapter.UserAccountAdapter"
+
+
 PASSWORD_MIN_LENGTH = 6
 
 # Static files (CSS, JavaScript, Images)
@@ -173,3 +183,13 @@ EMAIL_HOST_PASSWORD = 'Lovingly4'
 EMAIL_PORT = 465
 
 EMAIL_USE_SSL = True
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_METHODS = (
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+)

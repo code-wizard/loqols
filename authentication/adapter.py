@@ -1,4 +1,4 @@
-from allauth.account.adapter import  DefaultAccountAdapter
+from allauth.account.adapter import DefaultAccountAdapter
 from django.db import transaction
 from authentication.models import LqProfile
 
@@ -25,8 +25,10 @@ class UserAccountAdapter(DefaultAccountAdapter):
         # if last_name:
         #     user_field(user, 'last_name', last_name)
         if 'password' in data:
+            print("Password yes")
             user.set_password(data["password"])
         else:
+            print("Hey! setting unusable")
             user.set_unusable_password()
         self.populate_username(request, user)
         if commit:
