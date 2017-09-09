@@ -25,7 +25,7 @@ SECRET_KEY = '@l%4-+i@$i$xy*2%xk1m)4l+k7*!d)jpjngr9@khxl@^^s$@vn'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["loqols.com","localhost","139.59.39.1761"]
 AUTH_USER_MODEL = "authentication.LqUser"
 # AUTHENTICATION_BACKENDS = (
 #     # 'authentication.backends.EmailAuthBackend',
@@ -96,8 +96,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         # 'ENGINE': 'django.contrib.gis.db.backends.mysql',
         'NAME': 'loqols',
-        'USER': 'root',
-        'PASSWORD': '',
+        'USER': 'loqols',
+        'PASSWORD': 'loqols-root-dev@2017',
+        #root password -  loqols-root-dev@2017
         'HOST': '127.0.0.1',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
         'sql_mode':'STRICT_TRANS_TABLES',
