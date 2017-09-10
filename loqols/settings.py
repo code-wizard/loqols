@@ -25,7 +25,7 @@ SECRET_KEY = '@l%4-+i@$i$xy*2%xk1m)4l+k7*!d)jpjngr9@khxl@^^s$@vn'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["loqols.com","localhost","139.59.39.1761"]
+ALLOWED_HOSTS = ["loqols.com","localhost","139.59.39.176"]
 AUTH_USER_MODEL = "authentication.LqUser"
 # AUTHENTICATION_BACKENDS = (
 #     # 'authentication.backends.EmailAuthBackend',
