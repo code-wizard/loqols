@@ -97,6 +97,13 @@ class LqProfile(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     avatar = models.ImageField(blank=True, default="default_avatar.jpg", upload_to=photo_upload_path)
 
+    def save(self,*args,**kwargs):
+        if self.gender == "Male" and (self.avatar == 'default_avatar.jpg' or self.avatar == 'avatar_female.png'):
+            self.avatar = "avatar_male.png"
+        elif self.gender == "Female" and (self.avatar == 'default_avatar.jpg' or self.avatar == 'avatar_male.png'):
+            self.avatar = "avatar_female.png"
+        super(LqProfile,self).save(*args,**kwargs)
+
     class Meta:
         db_table = "lq_profile"
 

@@ -6,6 +6,9 @@ from django.contrib.auth import get_user_model, authenticate
 from rest_framework import serializers, exceptions
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
+from rest_framework.authtoken.models import Token
+from rest_auth.models import TokenModel
+
 
 UserModel = get_user_model()
 
@@ -144,3 +147,13 @@ class LqLoginSerializer(serializers.Serializer):
         attrs['user'] = user
         return attrs
 
+
+class LqTokenSerializer(serializers.ModelSerializer):
+    """
+    Serializer for Token model.
+    """
+    user = LqUserSerializer(required=False)
+
+    class Meta:
+        model = TokenModel
+        fields = ('key','user')

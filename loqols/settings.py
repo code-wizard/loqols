@@ -25,7 +25,7 @@ SECRET_KEY = '@l%4-+i@$i$xy*2%xk1m)4l+k7*!d)jpjngr9@khxl@^^s$@vn'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["loqols.com","localhost","139.59.39.176"]
+ALLOWED_HOSTS = ["loqols.com","localhost","139.59.39.176","127.0.0.1","192.168.1.2"]
 AUTH_USER_MODEL = "authentication.LqUser"
 # AUTHENTICATION_BACKENDS = (
 #     # 'authentication.backends.EmailAuthBackend',
@@ -160,7 +160,7 @@ REST_AUTH_REGISTER_SERIALIZERS = {
 }
 REST_AUTH_SERIALIZERS = {
     'LOGIN_SERIALIZER': 'authentication.serializers.LqLoginSerializer',
-    # 'TOKEN_SERIALIZER': 'path.to.custom.TokenSerializer',
+     'TOKEN_SERIALIZER': 'authentication.serializers.LqTokenSerializer',
 }
 ACCOUNT_ADAPTER="authentication.adapter.UserAccountAdapter"
 
@@ -175,7 +175,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = "static" #os.path.join(BASE_DIR,"static/")
 
 MEDIA_ROOT =os.path.join(BASE_DIR,"media/")
-MEDIA_URL ='/media/'
+MEDIA_URL = '/media/'
 
 EMAIL_HOST = 'sg2plcpnl0027.prod.sin2.secureserver.net'
 EMAIL_HOST_USER = 'iuloko@monchest.com'
