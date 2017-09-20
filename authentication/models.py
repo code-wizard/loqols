@@ -95,7 +95,7 @@ class LqProfile(models.Model):
     marital_status = models.CharField(max_length=10, blank=True, null=True)
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    avatar = models.ImageField(blank=True, default="default_avatar.jpg", upload_to=photo_upload_path)
+    avatar = models.ImageField(blank=True, default="avatar_male.png", upload_to=photo_upload_path)
 
     def save(self,*args,**kwargs):
         if self.gender == "Male" and (self.avatar == 'default_avatar.jpg' or self.avatar == 'avatar_female.png'):

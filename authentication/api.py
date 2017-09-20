@@ -33,7 +33,7 @@ from django.conf import settings
 #         return Response(serializer.data, status=status.HTTP_200_OK)
 
 class CheckAuth(viewsets.ViewSet):
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    # permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
     @list_route(methods=["get"])
     def check_auth(self,request):
