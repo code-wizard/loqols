@@ -80,7 +80,7 @@ class LqUser(AbstractBaseUser,PermissionsMixin):
 
 
 def photo_upload_path(instance,filename):
-    return "".join(["%s%s%s%s" %("media/profile-photo/",str(instance.first_name),str(instance.last_name),"/"),filename])
+    return "".join(["%s%s%s%s" %("profile-photo/",str(instance.first_name),str(instance.last_name),"/"),filename])
 
 
 class LqProfile(models.Model):
@@ -95,12 +95,13 @@ class LqProfile(models.Model):
     marital_status = models.CharField(max_length=10, blank=True, null=True)
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    avatar = models.ImageField(blank=True, default="avatar_male.png", upload_to=photo_upload_path)
+    has_photo = models.BooleanField(default=False)
+    avatar = models.ImageField(blank=True,null=True, default="avatar_male.png", upload_to=photo_upload_path)
 
     def save(self,*args,**kwargs):
-        if self.gender == "Male" and (self.avatar == 'default_avatar.jpg' or self.avatar == 'avatar_female.png'):
+        if self.gender == "Male" and not self.has_photo:
             self.avatar = "avatar_male.png"
-        elif self.gender == "Female" and (self.avatar == 'default_avatar.jpg' or self.avatar == 'avatar_male.png'):
+        elif self.gender == "Female" and not self.has_photo:
             self.avatar = "avatar_female.png"
         super(LqProfile,self).save(*args,**kwargs)
 

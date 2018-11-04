@@ -8,17 +8,19 @@ from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from rest_framework.authtoken.models import Token
 from rest_auth.models import TokenModel
+from drf_extra_fields.fields import Base64ImageField
 
 
 UserModel = get_user_model()
 
-
 class LqProfileSerializer(serializers.ModelSerializer):
+    avatar = Base64ImageField(required=False)
 
     class Meta:
         model = LqProfile
         fields = ["id","first_name","last_name","phone","dob","country","city","gender","marital_status","updated_at",
-                  "created_at","avatar"]
+                  "created_at","avatar","has_photo"]
+        # read_only_fields=["avatar_url"]
 
 
 class LqUserSerializer(serializers.ModelSerializer):
@@ -61,7 +63,6 @@ class LqUserRegistrationSerializer(serializers.Serializer):
             # setup_user_email(request, user, [])
             return user
 
-
     class Meta:
         # model = LqUser
         fields = "__all__"
@@ -82,17 +83,6 @@ class LqLoginSerializer(serializers.Serializer):
 
         return user
 
-
-    # def _validate_username_email(self, username, email, password):
-    #     user = None
-    #
-    #     if email and password:
-    #         user = authenticate(email=email, password=password)
-    #     else:
-    #         msg = _('Must include either "username" or "email" and "password".')
-    #         raise exceptions.ValidationError(msg)
-    #
-    #     return user
 
     def validate(self, attrs):
         email = attrs.get('email')

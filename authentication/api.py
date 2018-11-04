@@ -64,20 +64,21 @@ class UserRegistraionViewset(viewsets.ModelViewSet):
         print(request.user.id)
         profile = get_object_or_404(LqProfile,pk=request.user.profile.id)
         data = request.data
-        serializer = self.serializer_class(profile,data=request.data,partial=True)
+        serializer = self.serializer_class(profile,data=request.data,partial=True,context={'request':request})
 
         if serializer.is_valid():
             serializer.save()
+            data = LqUserSerializer(profile.user,context={'request':request})
 
-            return Response(serializer.data,status=200)
+            return Response(data.data,status=200)
         else:
             return Response(serializer.errors,status=400)
 
-    @list_route(methods=["get"])
+    @list_route(methods=["get","post"])
     def get_user(self, request):
         print(request.user.id,request.META.get('HTTP_AUTHORIZATION'))
         user = get_object_or_404(LqUser, pk=request.user.id)
-        serializer = LqUserSerializer(user)
+        serializer = LqUserSerializer(user, context={"request": request})
         return Response(serializer.data, status=200)
 
     # def get_user(self,request,pk=None,format=None):
